@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A little gift for you</title>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fdf1f3;--card:#fffafb;--ink:#a3202f;--soft:#6d4a50;--btn:#ee5a24;--btn2:#c9431a;--peng:#6f6a75;--pink:#f6b6c4}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:'Gaegu','Patrick Hand',cursive;font-size:22px;display:grid;place-items:center;overflow:hidden}
+.stage{width:min(94vw,560px);min-height:min(88vh,640px);background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(163,32,47,.14);padding:22px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;position:relative;overflow:auto;max-height:96%}
+.scene{display:none;flex-direction:column;align-items:center;gap:14px;width:100%}
+.scene.on{display:flex;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:scale(.96)}}
+h1{margin:0;overflow-wrap:anywhere;font-size:clamp(28px,7vw,40px);letter-spacing:.5px;line-height:1.1}
+p{margin:0;color:var(--soft);line-height:1.35}
+svg.p{width:130px;height:auto}
+.row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+button{font:700 24px 'Gaegu',cursive;background:var(--btn);color:#fff;border:0;border-bottom:4px solid var(--btn2);border-radius:999px;padding:6px 34px;cursor:pointer;transition:transform .15s}
+button:hover{transform:translateY(-2px)}button:active{transform:translateY(2px)}
+button:focus-visible,.gift:focus-visible,.slot:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+button.ghost{background:transparent;color:var(--ink);border:2px solid var(--pink);padding:2px 22px;font-size:20px}
+.pick{display:flex;gap:10px;justify-content:center;width:100%}
+.gift{background:none;border:0;padding:4px;border-radius:14px;color:var(--ink);font:700 18px 'Gaegu',cursive;flex:1;max-width:150px}
+.gift svg{width:100%;height:auto}.gift.done{opacity:.55}
+.cake{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
+.hb{font-size:clamp(40px,12vw,64px);font-weight:700;color:#e0476d;transform:rotate(-3deg)}
+.letter{max-height:46vh;overflow-y:auto;background:#fff;border:2px dashed var(--pink);border-radius:12px;padding:14px 16px;text-align:left;font-size:20px;color:var(--soft);width:100%}
+.letter[contenteditable]:focus{outline:2px solid var(--pink)}
+.slot{
+  width:110px;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:3px solid var(--pink);
+  background-color:#fde3ea;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  display:grid;
+  place-items:center;
+  color:var(--ink);
+  font-size:15px;
+  padding:6px;
+  overflow:hidden;
+}
+
+.slot.heart{
+  border-radius:50%;
+  width:150px;
+}
+
+.slot.has{
+  color:transparent;
+}
+.slot.heart{border-radius:50% 50% 50% 50%/45% 45% 55% 55%;width:150px}
+.slot.has{color:transparent}
+.collage{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.big{font-size:clamp(56px,18vw,110px);font-weight:700;color:#fff;background:var(--btn);width:100%;padding:34px 10px;border-radius:12px;line-height:.95;transform:rotate(-1.5deg)}
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hearts i{position:absolute;bottom:-30px;font-style:normal;animation:up 4s linear forwards}
+@keyframes up{to{transform:translateY(-120vh) rotate(25deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<main class="stage" id="stage">
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="peng" viewBox="0 0 100 110"><ellipse cx="50" cy="62" rx="36" ry="40" fill="#6f6a75"/><ellipse cx="50" cy="72" rx="24" ry="28" fill="#fff"/><circle cx="38" cy="50" r="4" fill="#222"/><circle cx="62" cy="50" r="4" fill="#222"/><path d="M44 56h12l-6 8z" fill="#f4a03a"/><ellipse cx="30" cy="56" rx="5" ry="3" fill="#f6b6c4" opacity=".8"/><ellipse cx="70" cy="56" rx="5" ry="3" fill="#f6b6c4" opacity=".8"/><ellipse cx="38" cy="102" rx="10" ry="5" fill="#f4a03a"/><ellipse cx="62" cy="102" rx="10" ry="5" fill="#f4a03a"/></symbol>
+<symbol id="box" viewBox="0 0 40 34"><rect x="4" y="12" width="32" height="20" rx="3" fill="#f27c9b"/><rect x="18" y="12" width="4" height="20" fill="#fde3ea"/><rect x="2" y="8" width="36" height="8" rx="3" fill="#e0476d"/><path d="M20 8c-8-8-12 0-4 0zM20 8c8-8 12 0 4 0z" fill="#fde3ea"/></symbol>
+<symbol id="bear" viewBox="0 0 80 80"><circle cx="18" cy="20" r="11" fill="currentColor"/><circle cx="62" cy="20" r="11" fill="currentColor"/><circle cx="40" cy="44" r="30" fill="currentColor"/><circle cx="30" cy="40" r="3" fill="#442"/><circle cx="50" cy="40" r="3" fill="#442"/><ellipse cx="40" cy="52" rx="8" ry="6" fill="#fff3d6"/><circle cx="40" cy="50" r="2.5" fill="#442"/></symbol>
+</defs></svg>
+
+<!-- 1 · Ask -->
+<section class="scene on" id="s-ask">
+  <svg class="p" id="askPeng"><use href="#peng"/></svg>
+  <h1 id="askText">Pls accept the gift</h1>
+  <div class="row"><button id="yes">Yes</button><button id="no">No</button></div>
+</section>
+
+<!-- 2 · Choose -->
+<section class="scene" id="s-pick">
+  <h1>Choose a penguin</h1>
+  <p>Each one has something special to say</p>
+  <div class="pick" id="pick"></div>
+  <button id="more" class="ghost" hidden>One more thing…</button>
+</section>
+
+<!-- 3 · Birthday -->
+<section class="scene" id="s-bday">
+  <div class="hb">Happy Boyfriend's Day!</div>
+  <div class="cake"><svg class="p" style="width:150px"><use href="#peng"/></svg><div style="font-size:54px;margin-top:-14px">💙</div></div>
+  <p>Best boyfriend ever. I got lucky.</p>
+  <button class="ghost back">Back</button>
+</section>
+
+<!-- 4 · Letter -->
+<section class="scene" id="s-letter">
+  <h1>A note for you</h1>
+  <div class="slot heart" data-image="images/letter.jpg"></div>
+<div class="letter" contenteditable="true" spellcheck="false">Happy Boyfriend's Day, my love! 💙<br><br>Even with all the miles between us you're the closest thing to home I have. Every call...every text..every "Good Morning" from you makes the distance feel a little smaller.<br><br>Tamaru mne Betu Bachhaa Jaan Kalejuuu kehvuuu i feel so blessed so lucky k tame mari life ma cho.<br><br>Your family makes me feel so loved k me su j kov tamare your mom is like my mom in fact now i can tell her everything and i want to tell her every lil detail of my life and Fattu ben she is such a sweet heart she is a sister to me I can tell her everything without any doubt she supports me motivates me.<br><br>I'm so proud of us for making this work and I can't wait for the day I don't have to say goodbye at the end of our meet.<br><br>I really dont wanna loose youu i am so scared of losing you this thought brings tears to my eyes.<br><br>Until then, know that I'm thinking about you...craving for you.. rooting for you..and loving you more every day.<br><br>i LOVE YOUUUUU FAKHRIIIIIIIIIIII.<br><br>Counting down till I can hug you again. 🫶</div>
+  <button class="ghost back">Back</button>
+</section>
+
+<!-- 5 · Collage -->
+<section class="scene" id="s-collage">
+  <h1>Beautiful memories</h1>
+  <div class="collage">
+    <div class="slot" data-image="images/memory-1.jpg"></div>
+    <div class="slot" data-image="images/memory-2.jpg"></div>
+    <div class="slot" data-image="images/memory-3.jpg"></div>
+    <div class="slot" data-image="images/memory-4.jpg"></div>
+</div>
+  <button class="ghost back">Back</button>
+</section>
+
+<!-- 6 · Be mine -->
+<section class="scene" id="s-mine">
+  <h1>Will you be mine?</h1>
+  <div class="slot heart" style="width:190px" data-image="images/mine.jpg"></div>
+  <div class="row"><button id="yes2">Yes</button><button id="no2">No</button></div>
+</section>
+
+<!-- 7 · Hug -->
+<section class="scene" id="s-hug">
+  <h1>Virtual hug for ya!</h1>
+  <div class="row" style="gap:0"><svg width="110" height="110" style="color:#f2b441"><use href="#bear"/></svg><svg width="110" height="110" style="color:#bfe3d0;margin-left:-14px"><use href="#bear"/></svg></div>
+  <h1>I miss you</h1>
+  <button id="toLove">Open</button>
+</section>
+
+<!-- 8 · Love -->
+<section class="scene" id="s-love">
+  <div class="big">I love<br>you</div>
+  <h1>i LOVE YOUUUUU FAKHRIIIIIIIIIIII 💙</h1>
+  <p>Counting down till I can hug you again. 🫶</p>
+  <button class="ghost" id="again">Start over</button>
+</section>
+
+<input type="file" accept="image/*" id="file" hidden>
+</main>
+
+<script>
+// ✏️ EDIT THESE — change the words and each penguin's surprise
+const CONFIG = {
+  askLines: ["Pls accept the gift", "Why did you click no!", "Pls, just once?", "I'll be sad…"],
+  gifts: [{label: "Open me", scene: "s-bday"}, {label: "Open me", scene: "s-letter"}, {label: "Open me", scene: "s-collage"}]
+};
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const go = id => { $$('.scene').forEach(s => s.classList.toggle('on', s.id === id)); if (id === 's-love') burst(); };
+const seen = new Set();
+
+// Scene 1: the "No" button never wins
+let nos = 0;
+const yes = $('#yes'), no = $('#no'), askText = $('#askText'), askPeng = $('#askPeng');
+no.onclick = () => {
+  nos++;
+  askText.textContent = CONFIG.askLines[Math.min(nos, CONFIG.askLines.length - 1)];
+  no.textContent = 'Try again';
+  yes.style.transform = `scale(${1 + Math.min(nos, 5) * .18})`;
+  askPeng.style.transform = `rotate(${nos % 2 ? -6 : 6}deg)`;
+};
+yes.onclick = () => go('s-pick');
+
+// Scene 2: choose a penguin
+const pick = $('#pick');
+CONFIG.gifts.forEach((g, i) => {
+  const b = document.createElement('button');
+  b.className = 'gift';
+  b.innerHTML = `<svg viewBox="0 0 100 150"><use href="#peng" y="0" width="100" height="110"/><use href="#box" x="22" y="96" width="56" height="48"/></svg>${g.label}`;
+  b.onclick = () => { seen.add(i); b.classList.add('done'); go(g.scene); if (seen.size === CONFIG.gifts.length) $('#more').hidden = false; };
+  pick.appendChild(b);
+});
+$$('.back').forEach(b => b.onclick = () => go('s-pick'));
+$('#more').onclick = () => go('s-mine');
+
+// Scene 6: another "No" that can't be chosen
+$('#yes2').onclick = () => go('s-hug');
+$('#no2').onclick = e => { e.target.textContent = 'Nice try 😏'; $('#yes2').style.transform = 'scale(1.4)'; };
+$('#toLove').onclick = () => go('s-love');
+$('#again').onclick = () => { seen.clear(); nos = 0; $('#more').hidden = true; $$('.gift').forEach(g => g.classList.remove('done')); askText.textContent = CONFIG.askLines[0]; no.textContent = 'No'; yes.style.transform = ''; go('s-ask'); };
+
+// Load images from the paths specified in data-image
+$$('.slot').forEach(s => {
+  const imagePath = s.dataset.image;
+
+  if (imagePath) {
+    s.style.backgroundImage = `url("${imagePath}")`;
+    s.classList.add('has');
+  }
+});
+// Floating hearts for the finale
+function burst() {
+  const box = document.createElement('div'); box.className = 'hearts';
+  for (let i = 0; i < 24; i++) {
+    const h = document.createElement('i'); h.textContent = ['💖', '💕', '🐧', '🎈'][i % 4];
+    h.style.cssText = `left:${Math.random() * 95}%;font-size:${18 + Math.random() * 22}px;animation-delay:${Math.random() * 1.5}s`;
+    box.appendChild(h);
+  }
+  $('#stage').appendChild(box); setTimeout(() => box.remove(), 6000);
+}
+</script>
+</body>
+</html>
