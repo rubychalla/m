@@ -1,0 +1,15 @@
+Place your photos in this folder with these names to load them automatically:
+
+letter.jpg     Photo on the letter scene
+memory-1.jpg   First collage photo
+memory-2.jpg   Second collage photo
+memory-3.jpg   Third collage photo
+memory-4.jpg   Fourth collage photo
+mine.jpg       Photo on the final question scene
+
+Use JPG, PNG, or WebP. If you use a different filename or extension, update
+that photo slot's data-image path in Boyfriend's Day Surprise.html.
+
+You can also click a photo slot and choose an image from your device. That
+picker preview lasts only until the page is reloaded; files in this folder
+are the persistent option.
